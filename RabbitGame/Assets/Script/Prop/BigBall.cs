@@ -13,7 +13,14 @@ public class BigBall : MonoBehaviour
             collision.transform.localScale = collision.transform.localScale*1.2f;//小球变大20%成打球
             collision.gameObject.tag = "BigBall"; //大球的标签设为“BigBall”
         }
-        Debug.Log("ddddddddddddddd3");
         Destroy(gameObject); //销毁变大道具
+    }
+    private void Start()
+    {
+        Messenger.AddListener(EventName.destroyAll, DestroySelf);
+    }
+    private void DestroySelf() //销毁自己
+    {
+            Destroy(gameObject); //销毁几何体自身
     }
 }

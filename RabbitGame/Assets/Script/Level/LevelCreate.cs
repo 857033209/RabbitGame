@@ -63,9 +63,9 @@ public class LevelCreate : MonoBehaviour
             {
                 Transform enemy = Instantiate(tram);
                 //给几何体赋一个随机颜色
-                enemy.GetComponent<Renderer>().material.color = new Color(Random.value, Random.value, Random.value);
+               // enemy.GetComponent<Renderer>().material.color = new Color(Random.value, Random.value, Random.value);
                 //给几何体一个随机旋转角度
-                enemy.rotation = Quaternion.Euler(0, 0, Random.Range(0, 90));
+                enemy.rotation = Quaternion.Euler(0, 0, Random.Range(0, 80));
                 //获取几何体子物体数字的Transform组件
                 Transform tf = enemy.GetComponentInChildren<Text>().transform;
                 //子物体不旋转
@@ -96,14 +96,14 @@ public class LevelCreate : MonoBehaviour
     {
         switch(type)
         {
-            case myType.emenyType.Circle: return "Circle"; 
-            case myType.emenyType.Diamond: return "Diamond"; 
-            case myType.emenyType.Hexaton: return "Hexaton";
-            case myType.emenyType.Polygon: return "Polygon"; 
-            case myType.emenyType.Square: return "Square";
-            case myType.emenyType.Triangle: return "Triangle";
-            case myType.emenyType.Boss: return "Boss";
-            default: return "Circle"; 
+            case myType.emenyType.BigBass: return "BigBass"; 
+            case myType.emenyType.Cabbage: return "Cabbage"; 
+            case myType.emenyType.ChineseCabbage: return "ChineseCabbage";
+            case myType.emenyType.Eggplant: return "Eggplant"; 
+            case myType.emenyType.Luobo: return "Luobo";
+            case myType.emenyType.Mushroom: return "Mushroom";
+            case myType.emenyType.Pepper: return "Pepper";
+            default: return "Cabbage"; 
         }
     }
     private string _GetPropName(myType.propType type)

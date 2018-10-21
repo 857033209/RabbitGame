@@ -18,8 +18,15 @@ public class CopyBall : MonoBehaviour
         newBall.GetComponent<Rigidbody2D>().AddForce(transform.right * 0.02f);
         //旧小球往左跳
         tf.GetComponent<Rigidbody2D>().AddForce(-transform.right * 0.02f);
-        Debug.Log("ddddddddddddddd2");
         //销毁复制道具
         Destroy(gameObject); 
+    }
+    private void Start()
+    {
+        Messenger.AddListener(EventName.destroyAll, DestroySelf);
+    }
+    private void DestroySelf() //销毁自己
+    {
+        Destroy(gameObject); //销毁几何体自身
     }
 }

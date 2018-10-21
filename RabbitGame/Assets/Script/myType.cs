@@ -8,13 +8,13 @@ public class myType : MonoBehaviour {
    public enum emenyType
     {
         None=0,
-        Triangle = 1,
-        Square = 2,
-        Polygon = 3,
-        Diamond = 4,
-        Hexaton = 5,
-        Circle = 6,
-        Boss=7,
+        Pepper = 1,
+        Mushroom = 2,
+        Luobo = 3,
+        Eggplant = 4,
+        ChineseCabbage = 5,
+        Cabbage = 6,
+        BigBass = 7,
     }
     //道具类型
     public enum propType

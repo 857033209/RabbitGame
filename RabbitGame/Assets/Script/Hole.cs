@@ -32,6 +32,8 @@ public class Hole : MonoBehaviour
         Balls[0]= newBall.GetComponent<Rigidbody2D>();
         Balls[1] = collision.transform.GetComponent<Rigidbody2D>();
         StartCoroutine(LineLaunch(Balls));
+        //记录添加的小球
+        Chapter.ballCount = Chapter.ballCount + 1;
     }
 
 

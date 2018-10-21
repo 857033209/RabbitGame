@@ -45,3 +45,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 1486200273
+    locked: 0
+  - name: Game
+    uniqueID: 2024830031
+    locked: 0
+  - name: Inteface
+    uniqueID: 2079882227
+    locked: 0

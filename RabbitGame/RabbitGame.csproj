@@ -296,7 +296,6 @@
     <Compile Include="Assets\Script\Ball\BallState.cs" />
     <Compile Include="Assets\Script\BlackHole.cs" />
     <Compile Include="Assets\Script\Board.cs" />
-    <Compile Include="Assets\Script\Chapter.cs" />
     <Compile Include="Assets\Script\Death\DeathBalance.cs" />
     <Compile Include="Assets\Script\Enemy.cs" />
     <Compile Include="Assets\Script\Event\Callback.cs" />
@@ -304,6 +303,8 @@
     <Compile Include="Assets\Script\Event\Messenger.cs" />
     <Compile Include="Assets\Script\Event\UIEventTriggerListener.cs" />
     <Compile Include="Assets\Script\Hole.cs" />
+    <Compile Include="Assets\Script\Interface\Chapter.cs" />
+    <Compile Include="Assets\Script\Interface\FailureInterface.cs" />
     <Compile Include="Assets\Script\Level\CreateHole.cs" />
     <Compile Include="Assets\Script\Level\LevelCreate.cs" />
     <Compile Include="Assets\Script\Level\LevelMove.cs" />

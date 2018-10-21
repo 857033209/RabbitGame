@@ -107,7 +107,7 @@ public class BallMove : MonoBehaviour
                 GetComponent<Rigidbody2D>().gravityScale = 0; //重力变为0
                 break;
             case BallState.Ready: //准备阶段
-                GetComponent<CircleCollider2D>().isTrigger = false; //关闭触发
+                GetComponent<CapsuleCollider2D>().isTrigger = false; //关闭触发
                 GetComponent<Rigidbody2D>().Sleep(); //小球停止不动
                 break;
         }
