@@ -18,7 +18,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
-public class UIEventTriggerListener : EventTrigger
+public  class UIEventTriggerListener : EventTrigger
 {
 
         public delegate void VoidDelegate(GameObject go);

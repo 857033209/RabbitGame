@@ -312,6 +312,8 @@
     <Compile Include="Assets\Script\myType.cs" />
     <Compile Include="Assets\Script\Prop\BigBall.cs" />
     <Compile Include="Assets\Script\Prop\CopyBall.cs" />
+    <Compile Include="Assets\Script\rabbitBtn\Rabbit.cs" />
+    <Compile Include="Assets\Script\rabbitBtn\RabitBtn.cs" />
     <Compile Include="Assets\Script\Task.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,10 +11,14 @@ public class Board : MonoBehaviour {
 
     public GameObject BlackHole;
 
+    private void Awake()
+    {
+        Messenger.AddListener<int>(EventName.initBoard, InitBoard);
+    }
     private void Start()
     {
         number = GetComponentInChildren<Text>(); //找到子物体(数字)
-        Messenger.AddListener<int>(EventName.initBoard, InitBoard);
+
 
     }
     private void Update()

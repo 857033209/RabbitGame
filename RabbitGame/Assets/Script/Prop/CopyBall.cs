@@ -21,9 +21,13 @@ public class CopyBall : MonoBehaviour
         //销毁复制道具
         Destroy(gameObject); 
     }
-    private void Start()
+    private void Awake()
     {
         Messenger.AddListener(EventName.destroyAll, DestroySelf);
+    }
+    private void Start()
+    {
+
     }
     private void DestroySelf() //销毁自己
     {

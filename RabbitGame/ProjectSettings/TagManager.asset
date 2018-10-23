@@ -8,6 +8,7 @@ TagManager:
   - BigBall
   - Enemy
   - Board
+  - rabbitBtn
   layers:
   - Default
   - TransparentFX

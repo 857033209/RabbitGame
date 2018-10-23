@@ -24,4 +24,10 @@ public class myType : MonoBehaviour {
         CopyProp = 2,
     }
 
+    //发射兔子的类型
+    public enum rabitType
+    {
+        CommonRabbit = 0,
+        RocketRabbit = 1,
+    }
 }

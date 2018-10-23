@@ -10,6 +10,7 @@ public class LevelMove : MonoBehaviour
     //需要做一个菜单，游戏死亡时弹出，在编辑器把死亡菜单拖进来
     public GameObject deathPanel;
     public Transform BossParent;
+    public Transform rabitBtnParent;
     //游戏初始状态为存活
     public LevelState levelState = LevelState.life;
     //声明一个关卡集合用来管理每层关卡
@@ -21,6 +22,11 @@ public class LevelMove : MonoBehaviour
     int count=0;//已使用的单元格数
     List<Transform> leftHoles = new List<Transform>(); //左边的兔子洞的挂点
     List<Transform> rightHoles = new List<Transform>(); //左边的兔子洞的挂点
+    private void Awake()
+    {
+        Messenger.AddListener(EventName.createEnemy, CreatTaskEnemy);
+        Messenger.AddListener<int>(EventName.createRabbit, CreatCommonRabbitBall);
+    }
     private void Start()
     {
         levelcreate = GetComponent<LevelCreate>(); //获取创建关卡类
@@ -43,8 +49,6 @@ public class LevelMove : MonoBehaviour
         //CreateLevelEnemy(myType.emenyType.Hexaton, 1);
         //CreateLevelEnemy(myType.emenyType.Polygon,2);
         CreateLevelProp(myType.propType.BigProp, 1);
-
-        Messenger.AddListener(EventName.createEnemy, CreatTaskEnemy);
     }
     public  void CreatTaskEnemy()//生成敌人
     {
@@ -53,6 +57,22 @@ public class LevelMove : MonoBehaviour
         CreateLevelEnemy(lt.task2.type, lt.task2.targetNum);
         CreateLevelEnemy(lt.task3.type, lt.task3.targetNum);
     }
+
+    public void CreatCommonRabbitBall(int rabbitRank)//生成兔子
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            GameObject rbbitBtn = Instantiate(Resources.Load("Prefab/RabbitBtn/CommonRabbit"), Vector3.zero, Quaternion.identity) as GameObject;
+            rbbitBtn.transform.parent = rabitBtnParent.transform;
+            for (int i = 0; i < 3; i++)
+            {
+                string id = j + "" + i;
+                Rabbit rb = new Rabbit(int.Parse(id), myType.rabitType.CommonRabbit, rabbitRank);
+                rbbitBtn.GetComponent<RabitBtn>().myball = rb;
+            }
+        }
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.A))  //测试用

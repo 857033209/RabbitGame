@@ -7,6 +7,7 @@ public class Chapter : MonoBehaviour {
     public static List<levelTask> chapters = new List<levelTask>(); //关卡
     public static int currentChapter=0; //目前所在的关卡
     public static int ballCount = 1; //小球開始的數量
+    public static int rabbitRank = 3; //兔子等级
     public Text chapterText;
     public Text task1Text;
     public Image task1Iamge;
@@ -53,6 +54,7 @@ public class Chapter : MonoBehaviour {
     // Use this for initialization
     void Start () {
         InitChapterInterface(currentChapter);
+        //GameStart();
     }
 	
 	// Update is called once per frame
@@ -62,8 +64,10 @@ public class Chapter : MonoBehaviour {
 
     public void GameStart()//游戏开始
     {
+        InitChapterInterface(currentChapter);
         Messenger.Broadcast(EventName.destroyAll); //销毁已存在的道具
         Messenger.Broadcast(EventName.createEnemy);
+        Messenger.Broadcast<int>(EventName.createRabbit, rabbitRank);
         backgroudimg.SetActive(false);
         StartCoroutine(backgroudimgSetActive());
     }
@@ -71,7 +75,7 @@ public class Chapter : MonoBehaviour {
     IEnumerator backgroudimgSetActive() //允许发射小球
     {
         yield return new WaitForSeconds(0.2f);
-        isCanSendBall = true;
+       // isCanSendBall = true;
     }
     public void GameExit() //退出游戏
     {

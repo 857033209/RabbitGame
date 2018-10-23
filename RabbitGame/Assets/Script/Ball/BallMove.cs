@@ -81,11 +81,15 @@ public class BallMove : MonoBehaviour
     {
         timer = 0; //计时归零
     }
+    private void Awake()
+    {
+        Messenger.AddListener<BallState>(EventName.blackHoleOpen, _UpdateBallState);
+    }
 
     private void Start()
     {
         selfRigidbody = GetComponent<Rigidbody2D>();
-        Messenger.AddListener<BallState>(EventName.blackHoleOpen, _UpdateBallState);
+       
     }
     private void Update()
     {

@@ -15,9 +15,13 @@ public class BigBall : MonoBehaviour
         }
         Destroy(gameObject); //销毁变大道具
     }
-    private void Start()
+    private void Awake()
     {
         Messenger.AddListener(EventName.destroyAll, DestroySelf);
+    }
+    private void Start()
+    {
+
     }
     private void DestroySelf() //销毁自己
     {
