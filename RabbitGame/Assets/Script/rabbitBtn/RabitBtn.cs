@@ -37,6 +37,8 @@ public class RabitBtn : MonoBehaviour {
     {
         if (id == myball.ID)
         {
+            Messenger.RemoveListener<int>(EventName.rabbitBallSend, DestroySelf);
+            Messenger.RemoveListener<int>(EventName.rabbitBtnColor, ChangeCholor);
             Destroy(gameObject); //销毁几何体自身
         }
     }

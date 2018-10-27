@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     Text number; //声明数字
     private void Start()
     {
-        Messenger.AddListener(EventName.destroyAll, DestroySelf);
+      //  Messenger.AddListener(EventName.destroyAll, DestroySelf);
         number = GetComponentInChildren<Text>(); //找到子物体(数字)
     }
     private void Update()
@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     }
     private void DestroySelf() //销毁自己
     {
+       // Messenger.RemoveListener(EventName.destroyAll, DestroySelf);
         Destroy(gameObject); //销毁几何体自身
     }
 }

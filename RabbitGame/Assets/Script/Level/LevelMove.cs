@@ -11,6 +11,9 @@ public class LevelMove : MonoBehaviour
     public GameObject deathPanel;
     public Transform BossParent;
     public Transform rabitBtnParent;
+    public Transform rabitParent;
+    //
+    public static List<GameObject> gameObjectList =new List<GameObject>();
     //游戏初始状态为存活
     public LevelState levelState = LevelState.life;
     //声明一个关卡集合用来管理每层关卡
@@ -26,6 +29,7 @@ public class LevelMove : MonoBehaviour
     {
         Messenger.AddListener(EventName.createEnemy, CreatTaskEnemy);
         Messenger.AddListener<int>(EventName.createRabbit, CreatCommonRabbitBall);
+        Messenger.AddListener(EventName.destroyAll, ClearAllGameObject);
     }
     private void Start()
     {
@@ -42,16 +46,21 @@ public class LevelMove : MonoBehaviour
                 array[i, j] = false;
             }
         }
-
-
-        CreateLevelBoss(myType.emenyType.BigBass, 1);
+       // CreateLevelBoss(myType.emenyType.BigBass, 1);
         //CreateLevelEnemy(myType.emenyType.Circle, 3);
         //CreateLevelEnemy(myType.emenyType.Hexaton, 1);
         //CreateLevelEnemy(myType.emenyType.Polygon,2);
-        CreateLevelProp(myType.propType.BigProp, 1);
+       // CreateLevelProp(myType.propType.BigProp, 1);
     }
     public  void CreatTaskEnemy()//生成敌人
     {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                array[i, j] = false;
+            }
+        }
         levelTask lt = Chapter.chapters[Chapter.currentChapter];
         CreateLevelEnemy(lt.task1.type,lt.task1.targetNum);
         CreateLevelEnemy(lt.task2.type, lt.task2.targetNum);
@@ -60,6 +69,10 @@ public class LevelMove : MonoBehaviour
 
     public void CreatCommonRabbitBall(int rabbitRank)//生成兔子
     {
+        for(int k=0;k< rabitBtnParent.transform.childCount;k++)
+        {
+            Destroy(rabitBtnParent.transform.GetChild(k).gameObject);
+        }
         for (int j = 0; j < 3; j++)
         {
             GameObject rbbitBtn = Instantiate(Resources.Load("Prefab/RabbitBtn/CommonRabbit"), Vector3.zero, Quaternion.identity) as GameObject;
@@ -109,6 +122,19 @@ public class LevelMove : MonoBehaviour
         return sonList; //返回子物体集合
     }
 
+    void ClearAllGameObject()//清除所有的游戏物体
+    {
+       foreach(GameObject obj in gameObjectList)
+        {
+            Destroy(obj);
+        }
+        gameObjectList.Clear();
+        for (int k = 0; k < rabitParent.childCount; k++)
+        {
+            Destroy(rabitParent.GetChild(k).gameObject);
+        }
+    }
+
      //产生敌人
     void CreateLevelEnemy(myType.emenyType enemyType, int enemycount) //敌人类型、数量
     {
@@ -116,7 +142,7 @@ public class LevelMove : MonoBehaviour
         {
             RowAndColumns rowcolumn = _CreatePosition();
             Transform row = lineList[rowcolumn.row]; //获取底层关卡,物体将从该层产生
-            List<Transform> sonList = GetAllChild(row); //获取底层所有小方格                                                         //生成一个几何体（每次创建关卡至少有一个几何体）
+         //   List<Transform> sonList = GetAllChild(row); //获取底层所有小方格                                                         //生成一个几何体（每次创建关卡至少有一个几何体）
             Transform enemy = levelcreate.CreateEnemy(1, enemyType);
             if(enemy==null)
             {
@@ -124,6 +150,7 @@ public class LevelMove : MonoBehaviour
             }
             enemy.position = row.GetChild(rowcolumn.column).position; //将几何体创建在该格子内
             enemy.parent = row.GetChild(rowcolumn.column); //几何体作为该格子的子物体可随关卡层移动
+            gameObjectList.Add(enemy.gameObject); //加入集合中保存方便以后清除
         }
     }
     //产生boss
@@ -138,6 +165,7 @@ public class LevelMove : MonoBehaviour
             }
             enemy.position = _CreateBossPosition(); //将几何体创建在该格子内
             enemy.parent = BossParent; //几何体作为该格子的子物体可随关卡层移动
+            gameObjectList.Add(enemy.gameObject); //加入集合中保存方便以后清除
         }
     }
     //产生道具
@@ -147,11 +175,12 @@ public class LevelMove : MonoBehaviour
         {
             RowAndColumns rowcolumn = _CreatePosition();
             Transform row = lineList[rowcolumn.row]; //获取底层关卡,物体将从该层产生
-            List<Transform> sonList = GetAllChild(row); //获取底层所有小方格                                                         //生成一个几何体（每次创建关卡至少有一个几何体）
+           // List<Transform> sonList = GetAllChild(row); //获取底层所有小方格                                                         //生成一个几何体（每次创建关卡至少有一个几何体）
             Transform enemy = levelcreate.CreateProp( propType);
             if (enemy == null) { return; }
             enemy.position = row.GetChild(rowcolumn.column).position; //将几何体创建在该格子内
             enemy.parent = row.GetChild(rowcolumn.column); //几何体作为该格子的子物体可随关卡层移动
+            gameObjectList.Add(enemy.gameObject); //加入集合中保存方便以后清除
         }
     }
 
@@ -184,7 +213,7 @@ public class LevelMove : MonoBehaviour
         }
         return  new RowAndColumns(0,0);
     }
-    public Vector3 _CreateBossPosition()
+    public Vector3 _CreateBossPosition() //随机产生boss的位置
     {
         int i = 0;
         while (i < 10000)

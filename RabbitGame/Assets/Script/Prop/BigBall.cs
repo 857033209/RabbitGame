@@ -17,7 +17,7 @@ public class BigBall : MonoBehaviour
     }
     private void Awake()
     {
-        Messenger.AddListener(EventName.destroyAll, DestroySelf);
+       // Messenger.AddListener(EventName.destroyAll, DestroySelf);
     }
     private void Start()
     {

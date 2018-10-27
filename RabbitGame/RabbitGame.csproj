@@ -305,6 +305,7 @@
     <Compile Include="Assets\Script\Hole.cs" />
     <Compile Include="Assets\Script\Interface\Chapter.cs" />
     <Compile Include="Assets\Script\Interface\FailureInterface.cs" />
+    <Compile Include="Assets\Script\Interface\WinInterface.cs" />
     <Compile Include="Assets\Script\Level\CreateHole.cs" />
     <Compile Include="Assets\Script\Level\LevelCreate.cs" />
     <Compile Include="Assets\Script\Level\LevelMove.cs" />
@@ -315,6 +316,7 @@
     <Compile Include="Assets\Script\rabbitBtn\Rabbit.cs" />
     <Compile Include="Assets\Script\rabbitBtn\RabitBtn.cs" />
     <Compile Include="Assets\Script\Task.cs" />
+    <Compile Include="Assets\Script\UITask.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\85703\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.8.8\Editor\Resources\Styles\Main_Dark.uss" />

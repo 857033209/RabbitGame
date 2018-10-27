@@ -46,7 +46,12 @@ public class BallMove : MonoBehaviour
           else if(collision.gameObject.tag == "Board")
             {
                 Text enemyNumber = collision.transform.GetChild(0).GetComponent<Text>();
-                 enemyNumber.text = ((System.Convert.ToInt32(enemyNumber.text)) - 1).ToString();
+                int num= System.Convert.ToInt32(enemyNumber.text) -1;
+                enemyNumber.text = num.ToString();
+                if (num<1)
+                {
+                    Messenger.Broadcast(EventName.boardDestroy);
+                }
             }
        }
     }

@@ -14,6 +14,7 @@ public class Board : MonoBehaviour {
     private void Awake()
     {
         Messenger.AddListener<int>(EventName.initBoard, InitBoard);
+        Messenger.AddListener(EventName.boardDestroy, BoardDestroyCallBack);
     }
     private void Start()
     {
@@ -21,7 +22,7 @@ public class Board : MonoBehaviour {
 
 
     }
-    private void Update()
+    private void BoardDestroyCallBack()
     {
         if (Convert.ToInt32(number.text) < 1) //如果数字小于1时
         {

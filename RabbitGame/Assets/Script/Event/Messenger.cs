@@ -158,6 +158,7 @@ static internal class Messenger
         if (!eventTable.ContainsKey(eventType))
         {
             throw new BroadcastException(string.Format("Broadcasting message \"{0}\" but no listener found. Try marking the message with Messenger.MarkAsPermanent.", eventType));
+          //  Debug.LogError(string.Format("Broadcasting message \"{0}\" but no listener found. Try marking the message with Messenger.MarkAsPermanent.", eventType));
         }
 #endif
     }

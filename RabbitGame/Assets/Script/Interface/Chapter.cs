@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class Chapter : MonoBehaviour {
     public static List<levelTask> chapters = new List<levelTask>(); //关卡
     public static int currentChapter=0; //目前所在的关卡
-    public static int ballCount = 1; //小球開始的數量
+    public static int ballCount = 0; //小球開始的數量
     public static int rabbitRank = 3; //兔子等级
-    public Text chapterText;
-    public Text task1Text;
-    public Image task1Iamge;
-    public Text task2Text;
-    public Image task2Iamge;
-    public Text task3Text;
-    public Image task3Iamge;
-    public GameObject backgroudimg;
-    public static bool isCanSendBall=false;
+    public Text chapterText;  //章节名称
+    public Text task1Text;   //任务1数量 -界面要显示的数量
+    public Image task1Iamge;   //任务1图片 
+    public Text task2Text;   //任务2数量 -界面要显示的数量
+    public Image task2Iamge;  //任务2图片 
+    public Text task3Text;   //任务2数量 -界面要显示的数量
+    public Image task3Iamge;  //任务2图片 
+    public GameObject backgroudimg;   //章节背景图片 
+    public static bool isCanSendBall=false;  //是否可以发誓相求
     void Awake()
     {
         levelTask chapter1 = new levelTask();
@@ -27,6 +27,7 @@ public class Chapter : MonoBehaviour {
         chapter1.task2 = t2;
         TaskTarget t3= new TaskTarget(3, myType.emenyType.Eggplant, 1);
         chapter1.task3 = t3;
+        chapter1.BoardBlood = 10;
         chapters.Add(chapter1);
 
         levelTask chapter2 = new levelTask();
@@ -37,12 +38,12 @@ public class Chapter : MonoBehaviour {
         chapter2.task2 = k2;
         TaskTarget k3 = new TaskTarget(3, myType.emenyType.Cabbage, 2);
         chapter2.task3 = k3;
+        chapter2.BoardBlood = 10;
         chapters.Add(chapter2);
     }
-    public void InitChapterInterface(int chaper)
+    public void InitChapterInterface()
     {
-
-        levelTask lt1 = chapters[chaper];
+        levelTask lt1 = chapters[currentChapter];
         chapterText.text = lt1.chapterName;
         task1Text.text= lt1.task1.targetNum.ToString();
         task1Iamge.sprite = LoadImg(lt1.task1.type);
@@ -53,8 +54,9 @@ public class Chapter : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        InitChapterInterface(currentChapter);
-        //GameStart();
+        InitChapterInterface();
+        Messenger.AddListener(EventName.gameStart, GameStart);
+        Messenger.AddListener(EventName.initChapterInteface, InitChapterInterface);
     }
 	
 	// Update is called once per frame
@@ -64,18 +66,29 @@ public class Chapter : MonoBehaviour {
 
     public void GameStart()//游戏开始
     {
-        InitChapterInterface(currentChapter);
-        Messenger.Broadcast(EventName.destroyAll); //销毁已存在的道具
-        Messenger.Broadcast(EventName.createEnemy);
-        Messenger.Broadcast<int>(EventName.createRabbit, rabbitRank);
-        backgroudimg.SetActive(false);
-        StartCoroutine(backgroudimgSetActive());
+        InitTask();//初始化任务
+        Messenger.Broadcast(EventName.initUITask);//初始化任务收集面板
+        Messenger.Broadcast(EventName.destroyAll); //销毁所有的游戏物体
+        Messenger.Broadcast(EventName.createEnemy);//生成敌人
+        Messenger.Broadcast<int>(EventName.createRabbit, rabbitRank);//创建兔子
+        backgroudimg.SetActive(false);//关闭章节界面
+        StartCoroutine(backgroudimgSetActive()); //允许发射小球
+    }
+
+    public void InitTask()
+    {
+        levelTask lt = chapters[currentChapter];
+        Task.TaskClear();
+        Task.TaskAdd(lt.task1.type, lt.task1.targetNum);
+        Task.TaskAdd(lt.task2.type, lt.task2.targetNum);
+        Task.TaskAdd(lt.task3.type, lt.task3.targetNum);
+        Messenger.Broadcast<int>(EventName.initBoard, lt.BoardBlood);
     }
 
     IEnumerator backgroudimgSetActive() //允许发射小球
     {
         yield return new WaitForSeconds(0.2f);
-       // isCanSendBall = true;
+         isCanSendBall = true;
     }
     public void GameExit() //退出游戏
     {

@@ -20,15 +20,23 @@ public static class Task
         TaskTarget task = new TaskTarget(targerNum, Type, 0);
         taskTargets.Add(task);
     }
-    public static void TaskCollectAdd(myType.emenyType Type)   //任务收集归零
+
+    public static void TaskCollectAdd(myType.emenyType Type)   //任务收集      
     {
-      foreach(TaskTarget tt in taskTargets)
+        foreach (TaskTarget tt in taskTargets)
         {
-            if(tt.type==Type)
+            if (tt.type == Type)
             {
-                tt.completenessNum= tt.completenessNum+1;
+                tt.completenessNum = tt.completenessNum + 1;
+                Messenger.Broadcast<myType.emenyType, int>(EventName.updateUITask, Type, tt.completenessNum);
                 break;
             }
+        }
+        if (TaskFinishCheck())
+        {
+            Messenger.Broadcast(EventName.destroyAll); //销毁所有的游戏物体
+            Messenger.Broadcast(EventName.updateBlackHole);//更新黑洞状态
+            Messenger.Broadcast(EventName.gameWin);
         }
     }
 
@@ -62,6 +70,7 @@ public class TaskTarget
 public class levelTask  //关卡任务
 {
     public string chapterName;//章节名
+    public int BoardBlood;//木板血量
     public TaskTarget task1;//任务1
     public TaskTarget task2;//任务2
     public TaskTarget task3;//任务3
