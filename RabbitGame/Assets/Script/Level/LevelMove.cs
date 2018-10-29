@@ -91,7 +91,7 @@ public class LevelMove : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.A))  //测试用
         {
             CreateLevelBoss(myType.emenyType.BigBass, 1);
-            CreateLevelEnemy(myType.emenyType.Cabbage, 3);
+           // CreateLevelEnemy(myType.emenyType.Cabbage, 3);
            // CreateLevelProp(myType.propType.BigProp, 3);
         }
         //在游戏运行时按Esc

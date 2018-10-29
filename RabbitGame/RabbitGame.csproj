@@ -296,6 +296,7 @@
     <Compile Include="Assets\Script\Ball\BallState.cs" />
     <Compile Include="Assets\Script\BlackHole.cs" />
     <Compile Include="Assets\Script\Board.cs" />
+    <Compile Include="Assets\Script\bullet.cs" />
     <Compile Include="Assets\Script\Death\DeathBalance.cs" />
     <Compile Include="Assets\Script\Enemy.cs" />
     <Compile Include="Assets\Script\Event\Callback.cs" />
