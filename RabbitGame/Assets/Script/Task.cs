@@ -34,6 +34,7 @@ public static class Task
         }
         if (TaskFinishCheck())
         {
+            Aim.gameState = Aim.GameState.Ready;
             Messenger.Broadcast(EventName.destroyAll); //销毁所有的游戏物体
             Messenger.Broadcast(EventName.updateBlackHole);//更新黑洞状态
             Messenger.Broadcast(EventName.gameWin);
@@ -67,6 +68,20 @@ public class TaskTarget
     }
 }
 
+//daboss
+public class TaskBigBoss
+{
+    public myType.emenyType type;   //目标类型
+    public int rank;        //目标等级
+    public int targetNum;  //目标数量
+    public TaskBigBoss(int targetNum1, myType.emenyType type1, int rank1 = 1)
+    {
+        this.targetNum = targetNum1;
+        this.rank = rank1;
+        this.type = type1;
+    }
+}
+
 public class levelTask  //关卡任务
 {
     public string chapterName;//章节名
@@ -74,4 +89,5 @@ public class levelTask  //关卡任务
     public TaskTarget task1;//任务1
     public TaskTarget task2;//任务2
     public TaskTarget task3;//任务3
+    public TaskBigBoss bigBoss;  //boss
 }

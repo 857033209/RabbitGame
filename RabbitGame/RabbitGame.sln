@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitGame", "RabbitGame.csproj", "{19D6C84E-7E9E-5CCF-D598-087B51A93E8B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitGame.Editor", "RabbitGame.Editor.csproj", "{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitGame.Editor", "RabbitGame.Editor.csproj", "{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}"
 EndProject
@@ -21,12 +21,11 @@ Global
 		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Release|Any CPU.Build.0 = Release|Any CPU
-		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57E68867-1EC0-43AC-9434-622F469B3512}
 	EndGlobalSection
 EndGlobal

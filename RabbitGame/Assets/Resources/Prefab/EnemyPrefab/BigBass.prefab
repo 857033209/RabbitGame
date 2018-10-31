@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 7
+  attackTime: 1
 --- !u!114 &114819917001380390
 MonoBehaviour:
   m_ObjectHideFlags: 1

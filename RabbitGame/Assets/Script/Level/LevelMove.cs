@@ -13,7 +13,7 @@ public class LevelMove : MonoBehaviour
     public Transform rabitBtnParent;
     public Transform rabitParent;
     //
-    public static List<GameObject> gameObjectList =new List<GameObject>();
+    public static List<GameObject> gameObjectList = new List<GameObject>();
     //游戏初始状态为存活
     public LevelState levelState = LevelState.life;
     //声明一个关卡集合用来管理每层关卡
@@ -22,7 +22,7 @@ public class LevelMove : MonoBehaviour
     public bool[,] array;//用于记录某个关卡是否有挂点
     int rows;  //关卡行数
     int columns; //关卡列数
-    int count=0;//已使用的单元格数
+    int count = 0;//已使用的单元格数
     List<Transform> leftHoles = new List<Transform>(); //左边的兔子洞的挂点
     List<Transform> rightHoles = new List<Transform>(); //左边的兔子洞的挂点
     private void Awake()
@@ -39,20 +39,20 @@ public class LevelMove : MonoBehaviour
         rows = lineList.Count;
         columns = GetAllChild(lineList[0]).Count;
         array = new bool[rows, columns];
-        for (int i=0; i< rows; i++)
+        for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
                 array[i, j] = false;
             }
         }
-       // CreateLevelBoss(myType.emenyType.BigBass, 1);
+        // CreateLevelBoss(myType.emenyType.BigBass, 1);
         //CreateLevelEnemy(myType.emenyType.Circle, 3);
         //CreateLevelEnemy(myType.emenyType.Hexaton, 1);
         //CreateLevelEnemy(myType.emenyType.Polygon,2);
-       // CreateLevelProp(myType.propType.BigProp, 1);
+        // CreateLevelProp(myType.propType.BigProp, 1);
     }
-    public  void CreatTaskEnemy()//生成敌人
+    public void CreatTaskEnemy()//生成敌人
     {
         for (int i = 0; i < rows; i++)
         {
@@ -62,9 +62,20 @@ public class LevelMove : MonoBehaviour
             }
         }
         levelTask lt = Chapter.chapters[Chapter.currentChapter];
-        CreateLevelEnemy(lt.task1.type,lt.task1.targetNum);
-        CreateLevelEnemy(lt.task2.type, lt.task2.targetNum);
-        CreateLevelEnemy(lt.task3.type, lt.task3.targetNum);
+        CreateLevelEnemy(lt.task1.type, lt.task1.targetNum, lt.task1.rank);
+        CreateLevelEnemy(lt.task2.type, lt.task2.targetNum, lt.task2.rank);
+        CreateLevelEnemy(lt.task3.type, lt.task3.targetNum, lt.task3.rank);
+        if (lt.bigBoss != null)
+        {
+            if (lt.bigBoss.type == myType.emenyType.BigBass)
+            {
+                CreateLevelBoss(myType.emenyType.BigBass, lt.bigBoss.targetNum, lt.bigBoss.rank);
+            }
+            else if (lt.bigBoss.type == myType.emenyType.SmallBoss)
+            {
+                CreateLevelEnemy(myType.emenyType.SmallBoss, lt.bigBoss.targetNum, lt.bigBoss.rank);
+            }
+        }
     }
 
     public void CreatCommonRabbitBall(int rabbitRank)//生成兔子
@@ -136,14 +147,14 @@ public class LevelMove : MonoBehaviour
     }
 
      //产生敌人
-    void CreateLevelEnemy(myType.emenyType enemyType, int enemycount) //敌人类型、数量
+    void CreateLevelEnemy(myType.emenyType enemyType, int enemycount,int rank) //敌人类型、数量
     {
         for (int i = 0; i < enemycount; i++)
         {
             RowAndColumns rowcolumn = _CreatePosition();
             Transform row = lineList[rowcolumn.row]; //获取底层关卡,物体将从该层产生
          //   List<Transform> sonList = GetAllChild(row); //获取底层所有小方格                                                         //生成一个几何体（每次创建关卡至少有一个几何体）
-            Transform enemy = levelcreate.CreateEnemy(1, enemyType);
+            Transform enemy = levelcreate.CreateEnemy(rank, enemyType);
             if(enemy==null)
             {
                 return;
@@ -154,11 +165,11 @@ public class LevelMove : MonoBehaviour
         }
     }
     //产生boss
-    void CreateLevelBoss(myType.emenyType enemyType, int bosscount=1) 
+    void CreateLevelBoss(myType.emenyType enemyType, int bosscount=1,int rank=1) 
     {
         for (int i = 0; i < bosscount; i++)
         {                                                  
-            Transform enemy = levelcreate.CreateEnemy(1, enemyType);
+            Transform enemy = levelcreate.CreateEnemy(rank, enemyType);
             if (enemy == null)
             {
                 return;

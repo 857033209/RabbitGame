@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     Text number; //声明数字
 
     private float attackTimer  =0;
-    public float attackTime = 2000.0f;
+    public float attackTime = 2.0f;
     private void Start()
     {
       //  Messenger.AddListener(EventName.destroyAll, DestroySelf);
@@ -26,8 +26,10 @@ public class Enemy : MonoBehaviour
             Task.TaskCollectAdd(enemyType);
         }
 
-        if (enemyType == myType.emenyType.BigBass)
+        if (enemyType == myType.emenyType.BigBass || enemyType == myType.emenyType.SmallBoss)
         {
+            if (Task.isInBlackHole == true) return;
+            if (Aim.gameState != Aim.GameState.Battle) return;
             //计时器
             if (attackTimer > 0)
                 attackTimer -= Time.deltaTime;

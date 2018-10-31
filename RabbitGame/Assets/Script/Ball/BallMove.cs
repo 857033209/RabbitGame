@@ -66,16 +66,16 @@ public class BallMove : MonoBehaviour
              switch (Random.Range(0, 4)) //随机方向弹开
              {
                 case 0:
-                   GetComponent<Rigidbody2D>().AddForce(transform.up * 1f);
+                   GetComponent<Rigidbody2D>().AddForce(transform.up * 10000f);
                    break;
                 case 1:
-                   GetComponent<Rigidbody2D>().AddForce(-transform.up * 1f);
+                   GetComponent<Rigidbody2D>().AddForce(-transform.up * 10000f);
                    break;
                 case 2:
-                   GetComponent<Rigidbody2D>().AddForce(transform.right * 1f);
+                   GetComponent<Rigidbody2D>().AddForce(transform.right * 10000f);
                    break;
                 case 3:
-                   GetComponent<Rigidbody2D>().AddForce(-transform.up * 1f);
+                   GetComponent<Rigidbody2D>().AddForce(-transform.up * 10000f);
                    break;
              }
           }

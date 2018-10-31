@@ -16,7 +16,7 @@ public class Chapter : MonoBehaviour {
     public Text task3Text;   //任务2数量 -界面要显示的数量
     public Image task3Iamge;  //任务2图片 
     public GameObject backgroudimg;   //章节背景图片 
-    public static bool isCanSendBall=false;  //是否可以发誓相求
+    public static bool isCanSendBall=false;  //是否可以发射球
     void Awake()
     {
         levelTask chapter1 = new levelTask();
@@ -32,14 +32,29 @@ public class Chapter : MonoBehaviour {
 
         levelTask chapter2 = new levelTask();
         chapter2.chapterName = "第二章";
-        TaskTarget k1 = new TaskTarget(1, myType.emenyType.Luobo, 2);
+        TaskTarget k1 = new TaskTarget(3, myType.emenyType.Luobo, 2);
         chapter2.task1 = k1;
-        TaskTarget k2 = new TaskTarget(2, myType.emenyType.Mushroom, 2);
+        TaskTarget k2 = new TaskTarget(3, myType.emenyType.Mushroom, 2);
         chapter2.task2 = k2;
         TaskTarget k3 = new TaskTarget(3, myType.emenyType.Cabbage, 2);
         chapter2.task3 = k3;
         chapter2.BoardBlood = 10;
+        TaskBigBoss bg2 = new TaskBigBoss(1,myType.emenyType.SmallBoss, 3);
+        chapter2.bigBoss = bg2;
         chapters.Add(chapter2);
+
+        levelTask chapter3 = new levelTask();
+        chapter3.chapterName = "第三章";
+        TaskTarget gg1 = new TaskTarget(3, myType.emenyType.Pepper, 3);
+        chapter3.task1 = gg1;
+        TaskTarget gg2 = new TaskTarget(3, myType.emenyType.Mushroom, 3);
+        chapter3.task2 = gg2;
+        TaskTarget gg3 = new TaskTarget(3, myType.emenyType.Eggplant, 3);
+        chapter3.task3 = gg3;
+        TaskBigBoss bg3 = new TaskBigBoss(1,myType.emenyType.BigBass, 3);
+        chapter3.bigBoss = bg3;
+        chapter3.BoardBlood = 10;
+        chapters.Add(chapter3);
     }
     public void InitChapterInterface()
     {
@@ -72,7 +87,7 @@ public class Chapter : MonoBehaviour {
         Messenger.Broadcast(EventName.createEnemy);//生成敌人
         Messenger.Broadcast<int>(EventName.createRabbit, rabbitRank);//创建兔子
         backgroudimg.SetActive(false);//关闭章节界面
-        StartCoroutine(backgroudimgSetActive()); //允许发射小球
+      //  StartCoroutine(backgroudimgSetActive()); //允许发射小球
     }
 
     public void InitTask()
@@ -88,7 +103,7 @@ public class Chapter : MonoBehaviour {
     IEnumerator backgroudimgSetActive() //允许发射小球
     {
         yield return new WaitForSeconds(0.2f);
-         isCanSendBall = true;
+       //  isCanSendBall = true;
     }
     public void GameExit() //退出游戏
     {

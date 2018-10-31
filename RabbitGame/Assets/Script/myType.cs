@@ -15,6 +15,7 @@ public class myType : MonoBehaviour {
         ChineseCabbage = 5,
         Cabbage = 6,
         BigBass = 7,
+        SmallBoss = 8,
     }
     //道具类型
     public enum propType

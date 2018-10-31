@@ -31,6 +31,7 @@ public class Board : MonoBehaviour {
             Task.isInBlackHole = true;
             BlackHole.SetActive(true);
             Messenger.Broadcast<BallState>(EventName.blackHoleOpen, BallState.Ready);
+            Aim.gameState = Aim.GameState.Ready;
         }
 
     }

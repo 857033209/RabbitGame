@@ -13,7 +13,7 @@ public class Aim : MonoBehaviour //挂枪口Muzzle上
     public float shootingSpeed = 1000f; //小球发射速度
     public GameObject levelPanel; //把LevelPanel拖进去
     public static Rabbit ball; //要发射的小球
-    public static GameState gameState = GameState.Ready; //要发射的小球
+    public static GameState gameState = GameState.Ready; //游戏状态
     void Start()
     {
         Time.timeScale = 1; //游戏时间正常      
@@ -40,7 +40,7 @@ public class Aim : MonoBehaviour //挂枪口Muzzle上
 
     void AimLaunch() //瞄准发射
     {
-        if(ClickPositonIsInRange(Camera.main.ScreenToWorldPoint(Input.mousePosition), CriticalPointLeft, CriticalPointRight) == false)
+        if (ClickPositonIsInRange(Camera.main.ScreenToWorldPoint(Input.mousePosition), CriticalPointLeft, CriticalPointRight) == false)
         {
             return;
         }
@@ -97,6 +97,7 @@ public class Aim : MonoBehaviour //挂枪口Muzzle上
 
     IEnumerator LineLaunch2(Vector3 muzzlePos) //用协程排队发射小球
     {
+        gameState = GameState.Battle;
         Chapter.isCanSendBall = false;
         Vector3 pos1 = aimLine.GetPosition(1);//获取瞄准线结束点坐标
         Vector3 directionAttack = (pos1 - muzzlePos).normalized;//获取瞄准结束点与枪口的方向向量  

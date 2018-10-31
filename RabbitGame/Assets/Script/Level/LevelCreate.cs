@@ -96,7 +96,8 @@ public class LevelCreate : MonoBehaviour
     {
         switch(type)
         {
-            case myType.emenyType.BigBass: return "BigBass"; 
+            case myType.emenyType.BigBass: return "BigBass";
+            case myType.emenyType.SmallBoss: return "SmallBoss";
             case myType.emenyType.Cabbage: return "Cabbage"; 
             case myType.emenyType.ChineseCabbage: return "ChineseCabbage";
             case myType.emenyType.Eggplant: return "Eggplant"; 
