@@ -8,6 +8,7 @@ public class RabitBtn : MonoBehaviour {
 
     public Rabbit myball;
     public Image img;
+    public int ID;
     // Use this for initialization
     private void Awake()
     {

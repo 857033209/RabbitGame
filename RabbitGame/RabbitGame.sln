@@ -5,9 +5,7 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitGame", "RabbitGame.csproj", "{19D6C84E-7E9E-5CCF-D598-087B51A93E8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PackageManagerUI.Editor", "Unity.PackageManagerUI.Editor.csproj", "{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEditor.StandardEvents", "UnityEditor.StandardEvents.csproj", "{6800202F-4402-D405-F8CB-03DC7BD78B92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitGame.Editor", "RabbitGame.Editor.csproj", "{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,19 +17,15 @@ Global
 		{19D6C84E-7E9E-5CCF-D598-087B51A93E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19D6C84E-7E9E-5CCF-D598-087B51A93E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19D6C84E-7E9E-5CCF-D598-087B51A93E8B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6800202F-4402-D405-F8CB-03DC7BD78B92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6800202F-4402-D405-F8CB-03DC7BD78B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6800202F-4402-D405-F8CB-03DC7BD78B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6800202F-4402-D405-F8CB-03DC7BD78B92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264BE491-B520-5D1D-74C2-A8ABC3E4CC19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E956BA72-F86A-4A33-94F1-241D66B3CCA3}
+		SolutionGuid = {3ADD2558-6EEB-49CF-A8EF-5AF8EFDA2C7D}
 	EndGlobalSection
 EndGlobal

@@ -11,8 +11,8 @@ public class LevelMove : MonoBehaviour
     public GameObject deathPanel;
     public Transform BossParent;
     public Transform rabitBtnParent;  //兔子父物体
-    public Transform rabitBtnParent;
-
+    public Transform propBtnParent;
+    public int rabbitBtnID = 0;
     public Transform rabitParent;
     //
     public static List<GameObject> gameObjectList = new List<GameObject>();
