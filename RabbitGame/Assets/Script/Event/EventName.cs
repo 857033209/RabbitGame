@@ -13,6 +13,7 @@ public static class EventName {
     public static string rabbitBallSend = "rabbitBallSend"; //兔子被发射时触发
     public static string rabbitBtnColor = "rabbitBtnColor"; //点击兔子按钮类型时触发
     public static string createRabbit = "createRabbit";  //产生兔子
+    public static string createRocket = "createRocket";  //产生兔子
     public static string boardDestroy = "boardDestroy";  //木板被销毁
     public static string initUITask = "initUITask";  //初始化任务收集面板
     public static string updateUITask = "updateUITask";  //初始化任务收集面板

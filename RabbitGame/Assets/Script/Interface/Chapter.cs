@@ -86,6 +86,7 @@ public class Chapter : MonoBehaviour {
         Messenger.Broadcast(EventName.destroyAll); //销毁所有的游戏物体
         Messenger.Broadcast(EventName.createEnemy);//生成敌人
         Messenger.Broadcast<int>(EventName.createRabbit, rabbitRank);//创建兔子
+        Messenger.Broadcast<int>(EventName.createRocket, 1);//创建火箭道具
         backgroudimg.SetActive(false);//关闭章节界面
       //  StartCoroutine(backgroudimgSetActive()); //允许发射小球
     }

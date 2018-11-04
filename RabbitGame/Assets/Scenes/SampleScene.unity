@@ -8215,6 +8215,7 @@ MonoBehaviour:
   deathPanel: {fileID: 0}
   BossParent: {fileID: 1990182581}
   rabitBtnParent: {fileID: 470513246}
+  propBtnParent: {fileID: 1518141321}
   rabitParent: {fileID: 1127423820}
   levelState: 0
 --- !u!1 &1918541869
@@ -8758,8 +8759,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.1, y: 512}
-  m_SizeDelta: {x: 1114, y: 898.3}
+  m_AnchoredPosition: {x: -12.3, y: 512}
+  m_SizeDelta: {x: 1089.2, y: 898.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1995752369
 MonoBehaviour:

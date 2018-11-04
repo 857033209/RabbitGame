@@ -13,6 +13,8 @@ public class Aim : MonoBehaviour //挂枪口Muzzle上
     public float shootingSpeed = 1000f; //小球发射速度
     public GameObject levelPanel; //把LevelPanel拖进去
     public static Rabbit ball; //要发射的小球
+    public static SendType sendType; //要发射的小球类型
+    public static int destroyID; //要发射的小球
     public static GameState gameState = GameState.Ready; //游戏状态
     void Start()
     {
@@ -60,8 +62,14 @@ public class Aim : MonoBehaviour //挂枪口Muzzle上
         }
         if (Input.GetMouseButtonUp(0)) //抬起鼠标左键
         {
-            //StartCoroutine(LineLaunch(transform.position)); //启动协程发射小球
-            StartCoroutine(LineLaunch2(transform.position));
+            if (sendType == SendType.rabbit)
+            {
+                StartCoroutine(SendCommonRabbit(transform.position));
+            }
+            else if(sendType == SendType.rocket)
+            {
+                SendRockit(transform.position, Input.mousePosition);
+            }
             aimLine.SetPosition(1, transform.position); //让结束点和起点重合(撤销瞄准线) 
         }
     }
@@ -95,7 +103,8 @@ public class Aim : MonoBehaviour //挂枪口Muzzle上
         return newBall;
     }
 
-    IEnumerator LineLaunch2(Vector3 muzzlePos) //用协程排队发射小球
+
+    IEnumerator SendCommonRabbit(Vector3 muzzlePos) //用协程排队发射小球
     {
         gameState = GameState.Battle;
         Chapter.isCanSendBall = false;
@@ -117,6 +126,23 @@ public class Aim : MonoBehaviour //挂枪口Muzzle上
             cloneObj.transform.GetComponent<Rigidbody2D>().AddForce(directionAttack * shootingSpeed * Time.deltaTime);
             yield return new WaitForSeconds(0.2f); //每隔0.1秒发射一个
         }
+    }
+    private GameObject CreatRock()
+    {
+        string ballPath =  "Prefab/PropPrefab/Rocket";
+        GameObject newBall = Instantiate(Resources.Load(ballPath), Vector3.zero, Quaternion.identity) as GameObject;
+        return newBall;
+    }
+    void SendRockit(Vector3 muzzlePos, Vector3 endPostion) //用协程排队发射火箭兔
+    {
+        gameState = GameState.Battle;
+        Chapter.isCanSendBall = false;
+       // Vector3 endPostion = aimLine.GetPosition(1);//获取瞄准线结束点坐标
+        Messenger.Broadcast<int>(EventName.rabbitBallSend, destroyID);
+        GameObject cloneObj = CreatRock();// Instantiate(newBall) as GameObject;
+        cloneObj.transform.parent = ballParent.transform;
+        cloneObj.transform.position = ballParent.transform.position;
+        cloneObj.transform.GetComponent<Rocket>().endPostion = endPostion;
     }
 
 
@@ -155,5 +181,10 @@ public class Aim : MonoBehaviour //挂枪口Muzzle上
         Ready, //准备阶段
         Battle, //战斗阶段
         InBlackHole, //黑洞阶段
+    }
+    public enum SendType//发射类型
+    {
+        rabbit, //普通的兔子
+        rocket, //火箭兔
     }
 }

@@ -10,7 +10,9 @@ public class LevelMove : MonoBehaviour
     //需要做一个菜单，游戏死亡时弹出，在编辑器把死亡菜单拖进来
     public GameObject deathPanel;
     public Transform BossParent;
+    public Transform rabitBtnParent;  //兔子父物体
     public Transform rabitBtnParent;
+
     public Transform rabitParent;
     //
     public static List<GameObject> gameObjectList = new List<GameObject>();
@@ -29,6 +31,7 @@ public class LevelMove : MonoBehaviour
     {
         Messenger.AddListener(EventName.createEnemy, CreatTaskEnemy);
         Messenger.AddListener<int>(EventName.createRabbit, CreatCommonRabbitBall);
+        Messenger.AddListener<int>(EventName.createRocket, CreatPropBtn);
         Messenger.AddListener(EventName.destroyAll, ClearAllGameObject);
     }
     private void Start()
@@ -78,7 +81,7 @@ public class LevelMove : MonoBehaviour
         }
     }
 
-    public void CreatCommonRabbitBall(int rabbitRank)//生成兔子
+    public void CreatCommonRabbitBall(int rabbitRank)//生成兔子按钮
     {
         for(int k=0;k< rabitBtnParent.transform.childCount;k++)
         {
@@ -88,12 +91,27 @@ public class LevelMove : MonoBehaviour
         {
             GameObject rbbitBtn = Instantiate(Resources.Load("Prefab/RabbitBtn/CommonRabbit"), Vector3.zero, Quaternion.identity) as GameObject;
             rbbitBtn.transform.parent = rabitBtnParent.transform;
-            for (int i = 0; i < 3; i++)
-            {
-                string id = j + "" + i;
-                Rabbit rb = new Rabbit(int.Parse(id), myType.rabitType.CommonRabbit, rabbitRank);
-                rbbitBtn.GetComponent<RabitBtn>().myball = rb;
-            }
+            Rabbit rb = new Rabbit(rabbitBtnID, myType.rabitType.CommonRabbit, rabbitRank);
+            rbbitBtn.GetComponent<RabitBtn>().myball = rb;
+            rbbitBtn.GetComponent<RabitBtn>().ID = rabbitBtnID;
+            rabbitBtnID ++;
+        }
+    }
+
+    public void CreatPropBtn(int propRank)//生成道具按钮
+    {
+        for (int k = 0; k < propBtnParent.transform.childCount; k++)
+        {
+            Destroy(propBtnParent.transform.GetChild(k).gameObject);
+        }
+        for (int j = 0; j < 3; j++)
+        {
+            GameObject rbbitBtn = Instantiate(Resources.Load("Prefab/RabbitBtn/Rocket"), Vector3.zero, Quaternion.identity) as GameObject;
+            rbbitBtn.transform.parent = propBtnParent.transform;
+            rbbitBtn.GetComponent<propBtn>().ID = rabbitBtnID;
+            rbbitBtn.GetComponent<propBtn>().rank = propRank;
+            rbbitBtn.GetComponent<propBtn>().type = Aim.SendType.rocket;
+            rabbitBtnID++;
         }
     }
 

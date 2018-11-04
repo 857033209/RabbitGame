@@ -21,6 +21,8 @@ public class RabitBtn : MonoBehaviour {
 	
     void ChangeAimBallType(GameObject go)  //按下小球时触发
     {
+        Aim.destroyID = ID;
+        Aim.sendType = Aim.SendType.rabbit;
         Chapter.isCanSendBall = true;
         Aim.ball = myball;
         img.color = new Color32(223, 243, 97, 255);
