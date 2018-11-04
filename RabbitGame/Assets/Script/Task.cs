@@ -38,6 +38,7 @@ public static class Task
             Messenger.Broadcast(EventName.destroyAll); //销毁所有的游戏物体
             Messenger.Broadcast(EventName.updateBlackHole);//更新黑洞状态
             Messenger.Broadcast(EventName.gameWin);
+            Messenger.Broadcast(EventName.stateNextBoard,false);
         }
     }
 

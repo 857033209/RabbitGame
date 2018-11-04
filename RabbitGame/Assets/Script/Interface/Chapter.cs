@@ -98,6 +98,7 @@ public class Chapter : MonoBehaviour {
         Task.TaskAdd(lt.task2.type, lt.task2.targetNum);
         Task.TaskAdd(lt.task3.type, lt.task3.targetNum);
         Messenger.Broadcast<int>(EventName.initBoard, lt.BoardBlood);
+        Messenger.Broadcast<int>(EventName.initNextBoard, (int)(lt.BoardBlood * 1.5f));
     }
 
     IEnumerator backgroudimgSetActive() //允许发射小球

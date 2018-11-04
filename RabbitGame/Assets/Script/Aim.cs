@@ -102,6 +102,7 @@ public class Aim : MonoBehaviour //挂枪口Muzzle上
         Vector3 pos1 = aimLine.GetPosition(1);//获取瞄准线结束点坐标
         Vector3 directionAttack = (pos1 - muzzlePos).normalized;//获取瞄准结束点与枪口的方向向量  
         Messenger.Broadcast<int>(EventName.rabbitBallSend, ball.ID);
+        Messenger.Broadcast<bool>(EventName.stateNextBoard, true);
         for (int i = 0; i < ball.num; i++) //挨个发射小球
         {
             GameObject cloneObj = CreatBall(ball.type);// Instantiate(newBall) as GameObject;

@@ -8,7 +8,9 @@ public static class EventName {
     public static string createEnemy = "createEnemy";  //产生敌人
     public static string destroyAll = "destroyAll";  //销毁道具和敌人
     public static string initBoard = "initBoard"; //初始化木板
-    public static string rabbitBallSend = "rabbitBallSend"; //兔子被发誓时触发
+    public static string initNextBoard = "initNextBoard"; //初始化下一块木板
+    public static string stateNextBoard = "pauseNextBoard"; //下一块木板停止移动，开始移动
+    public static string rabbitBallSend = "rabbitBallSend"; //兔子被发射时触发
     public static string rabbitBtnColor = "rabbitBtnColor"; //点击兔子按钮类型时触发
     public static string createRabbit = "createRabbit";  //产生兔子
     public static string boardDestroy = "boardDestroy";  //木板被销毁
